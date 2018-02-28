@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
-// import { } from './reducers';
+import { dropdownOptions } from './reducers';
 
 const rootReducer = combineReducers({
+    dropdownOptions
 });
 
 export default rootReducer;
