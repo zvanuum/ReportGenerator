@@ -2,8 +2,7 @@ import React from 'react';
 import { FormControl, OverlayTrigger, Panel, Popover } from 'react-bootstrap';
 
 const DropdownOptionsInputPanel = (props) => {
-    console.log(props.onChange);
-    return (<Panel bsStyle="primary" style={{ 'width': '25%' }}>
+    return (<Panel bsStyle="warning" style={{ 'width': '25%' }}>
         <Panel.Heading>Dropdown Options</Panel.Heading>
         <Panel.Body>
             <OverlayTrigger
