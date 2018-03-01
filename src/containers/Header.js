@@ -1,31 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FormControl, Label, OverlayTrigger, PageHeader, Panel, Popover } from 'react-bootstrap';
+import { PageHeader } from 'react-bootstrap';
+
+import DropdownOptionsInputPanel from '../components/DropdownOptionsInputPanel';
 
 import { addDropdownOptions } from '../actions/actions';
 
 class Header extends Component {
+    handleDropdownOptionsInputChange = (event) => {
+        this.props.addToDropdown(event.target.value.split("\n").filter(option => option));
+    }
+
     render() {
         return (
-            <div>
+            <div style={{ 'marginLeft': "3%" }}>
                 <PageHeader>Report Generator</PageHeader>
-                <div style={{ 'marginLeft': "3%" }}>
-                    <Label bsStyle="primary">Dropdown Options</Label>
-                    <OverlayTrigger
-                        placement="right"
-                        overlay={(<Popover>Each line will appear as an option.</Popover>)}
-                    >
-                        <FormControl
-                            componentClass="textarea"
-                            style={{
-                                'resize': 'none',
-                                'width': '20%',
-                                'height': '150px'
-                            }}
-                        />
-                    </OverlayTrigger>
-                </div>
+                <DropdownOptionsInputPanel onChange={this.handleDropdownOptionsInputChange}/>
             </div>
         );
     }
@@ -46,7 +37,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        addToDropdown: (options) => dispatch(addDropdownOptions(['test']))
+        addToDropdown: (options) => dispatch(addDropdownOptions(options))
     };
 }
 
