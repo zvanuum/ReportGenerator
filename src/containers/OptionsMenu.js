@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Col, Grid, Row } from 'react-bootstrap';
 
 import DropdownOptionsInputPanel from '../components/DropdownOptionsInputPanel';
 
@@ -13,7 +14,14 @@ class OptionsMenu extends Component {
 
     render() {
         return (
-            <DropdownOptionsInputPanel onChange={this.handleDropdownOptionsInputChange}/>
+            <Grid>
+                <Row>
+                    <Col xs={4} md={4}>
+                        <DropdownOptionsInputPanel onChange={this.handleDropdownOptionsInputChange}/>
+                    </Col>
+                    <Col xs={8} md={8} />
+                </Row>
+            </Grid>
         );
     }
 }

@@ -1,32 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import { Col, Grid, PageHeader, Row } from 'react-bootstrap';
+import { Col, Button, Grid, PageHeader, Row } from 'react-bootstrap';
 
-import OptionsMenu from '../containers/OptionsMenu';
+import OptionsMenu from './OptionsMenu';
+import ReportMenu from './ReportMenu';
 
 class App extends Component {
     render() {
         return (
             <div>
                 <PageHeader style={{
-                    'margin-top': 0,
+                    'marginTop': 0,
                     'padding': '1px 0 0 3%',
-                    'background-color': '#F7C244'
+                    'backgroundColor': '#F7C244'
                 }}>
                     Report Generator
                 </PageHeader>
-                <div style={{ 'marginLeft': "3%" }}>
-                    <OptionsMenu />
-                </div>
-                <hr />
+                <OptionsMenu />
+                <hr style={{ 'margin': "0 0 0 0" }} />
+                <ReportMenu />
+                <hr style={{ 'marginTop': "0" }} />
                 <Grid>
-                    <Row className="show-grid">
-                        <Col xs={6} md={4}>
-                            <code>{'Col md={6} mdPush={6}'}</code>
-                        </Col>
-                        <Col xs={6} md={4}>
-                            <code>{'Col md={6} mdPull={6}'}</code>
+                    <Row>
+                        <Col xs={10} md={10} />
+                        <Col xs={2} md={2} >
+                            <Button bsStyle="warning" style={{'float': 'right'}}>Convert</Button>
                         </Col>
                     </Row>
                 </Grid>

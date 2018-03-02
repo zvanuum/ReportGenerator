@@ -9,7 +9,7 @@ const DropdownPicker = (props) => {
                             onSelect={onSelect}
                             disabled={disabled}>
             {
-                props.options.map((option, i) => {
+                options.map((option, i) => {
                     return <MenuItem key={option} eventKey={i}>{option}</MenuItem>
                 })
             }
