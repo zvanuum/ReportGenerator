@@ -19,7 +19,7 @@ class App extends Component {
                 </PageHeader>
                 <OptionsMenu />
                 <hr style={{ 'margin': "0 0 0 0" }} />
-                <ReportMenu />
+                <ReportMenu dropdownOptions={this.props.dropdownOptions} />
                 <hr style={{ 'marginTop': "0" }} />
                 <Grid>
                     <Row>

@@ -2,7 +2,6 @@ import React from 'react';
 import { FormControl, OverlayTrigger, Panel, Popover } from 'react-bootstrap';
 
 const DropdownOptionsInputPanel = (props) => {
-    // style={{ 'width': '25%' }}
     return (<Panel bsStyle="warning">
         <Panel.Heading>Dropdown Options</Panel.Heading>
         <Panel.Body>

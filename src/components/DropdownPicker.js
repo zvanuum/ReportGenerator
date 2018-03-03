@@ -2,11 +2,12 @@ import React from 'react';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 const DropdownPicker = (props) => {
-    const { title, options, onSelect, disabled } = props;
+    const { componentIndex, title, options, onSelect, disabled } = props;
 
-    return <DropdownButton title={title} 
-                            id="dropdown-size-medium"
-                            onSelect={onSelect}
+    return <DropdownButton id={`dropdown-basic-${componentIndex}`}
+                            title={title}
+                            className="dropdown-size-medium"
+                            onSelect={(optionIndex) => { onSelect(componentIndex, options[optionIndex]) }}
                             disabled={disabled}>
             {
                 options.map((option, i) => {
