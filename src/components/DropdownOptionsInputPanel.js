@@ -15,7 +15,7 @@ const DropdownOptionsInputPanel = (props) => {
                     placeholder="Input options..."
                     style={{
                         'resize': 'none',
-                        'height': '125px'
+                        'height': '160px'
                     }}
                 />
             </OverlayTrigger>

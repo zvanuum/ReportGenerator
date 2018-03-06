@@ -1,9 +1,10 @@
-import { ADD_TO_DROPDOWN_OPTIONS, REPORT_TEXT_CHANGED } from '../actions/actionTypes'
+import { ADD_TO_DROPDOWN_OPTIONS, DROPDOWN_OPTION_CHOSEN, REPORT_TEXT_CHANGED } from '../actions/actionTypes'
 
 export function dropdownOptions(state = [], action) {
     switch (action.type) {
         case ADD_TO_DROPDOWN_OPTIONS:
             let newState = new Set();
+
             for (const option of action.data) {
                 newState.add(option);
             }
@@ -14,10 +15,16 @@ export function dropdownOptions(state = [], action) {
     }
 }
 
-export function reportText(state = '', action) {
+export function reportText(state = { reportText: '', selectedDropdownOptions: {} }, action) {
     switch (action.type) {
+        case DROPDOWN_OPTION_CHOSEN:
+            let newState = Object.assign({}, state);
+
+            newState.selectedDropdownOptions[action.data.index] = action.data.option;
+
+            return newState;
         case REPORT_TEXT_CHANGED:
-            return action.data;
+            return Object.assign({}, state, { reportText: action.data });
         default:
             return state;
     }

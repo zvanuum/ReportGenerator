@@ -8,8 +8,9 @@ const ReportInputForm = (props) => (
         placeholder="Input report here"
         style={{
             'resize': 'none',
-            'height': '35em',
-            'marginBottom': '15px'
+            'height': '32em',
+            'marginBottom': '15px',
+            'whiteSpace': 'pre-wrap'
         }}
     />
 )

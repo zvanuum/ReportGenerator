@@ -5,9 +5,8 @@ import { Col, Grid, Label, Row } from 'react-bootstrap';
 
 import DropdownPicker from '../components/DropdownPicker';
 import ReportInputForm from '../components/ReportInputForm';
-import ReportFormattingForm from '../components/ReportFormattingForm';
 
-import { reportTextChanged } from '../actions/actions';
+import { dropdownOptionChosen, reportTextChanged } from '../actions/actions';
 
 class ReportMenu extends Component {
     handleReportInputChange = (event) => {
@@ -15,7 +14,10 @@ class ReportMenu extends Component {
     }
 
     handleDropdownChoiceSelected = (index, option) => {
-        console.log(index, option);
+        this.props.dropdownOptionChosen(index, option);
+        // Component isn't re-rendered after dropdown choice is dispatched, so force it to update for dropdown title
+        // Should probably figure out how to do this properly
+        this.forceUpdate();
     }
 
     createReportWithDropdowns = (reportText) => {
@@ -29,7 +31,7 @@ class ReportMenu extends Component {
                     <DropdownPicker
                         key={i}
                         componentIndex={i}
-                        title={'Select'}
+                        title={this.props.selectedDropdownOptions[i] || 'Select'}
                         options={this.props.dropdownOptions} 
                         onSelect={this.handleDropdownChoiceSelected}
                     />
@@ -41,6 +43,8 @@ class ReportMenu extends Component {
     }
 
     render() {
+        const generatedText = this.createReportWithDropdowns(this.props.reportText);
+
         return (
             <Grid>
                 <Row className="show-grid">
@@ -57,8 +61,14 @@ class ReportMenu extends Component {
                         }}
                     >
                         <h4><Label bsStyle="warning">Preview</Label></h4>
-                        <div style={{ 'height': '35em', 'marginBottom': '15px' }}>
-                            { this.createReportWithDropdowns(this.props.reportText) }
+                        <div style={{ 
+                            'height': '28em', 
+                            'marginBottom': '15px', 
+                            'fontSize': '16px',
+                            'whiteSpace': 'pre-wrap',
+                            'overflow': 'scroll'
+                        }}>
+                            { generatedText }
                         </div>
                     </Col>
                 </Row>
@@ -68,21 +78,25 @@ class ReportMenu extends Component {
 }
 
 ReportMenu.propTypes = {
+    dropdownOptionChosen: PropTypes.func,
     dropdownOptions: PropTypes.arrayOf(PropTypes.string),
     reportText: PropTypes.string,
-    reportTextChanged: PropTypes.func
+    reportTextChanged: PropTypes.func,
+    selectedDropdownOptions: PropTypes.object
 };
 
 function mapStateToProps(state) {
-    const { reportText } = state;
+    const { reportText, selectedDropdownOptions } = state.reportText;
 
     return {
-        reportText
+        reportText,
+        selectedDropdownOptions
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
+        dropdownOptionChosen: (index, choiceText) => dispatch(dropdownOptionChosen(index, choiceText)),
         reportTextChanged: (reportText) => dispatch(reportTextChanged(reportText))
     };
 }

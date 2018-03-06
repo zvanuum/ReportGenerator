@@ -8,7 +8,8 @@ const DropdownPicker = (props) => {
                             title={title}
                             className="dropdown-size-medium"
                             onSelect={(optionIndex) => { onSelect(componentIndex, options[optionIndex]) }}
-                            disabled={disabled}>
+                            disabled={disabled}
+                            bsSize="small">
             {
                 options.map((option, i) => {
                     return <MenuItem key={option} eventKey={i}>{option}</MenuItem>

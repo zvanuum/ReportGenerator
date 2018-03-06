@@ -18,14 +18,14 @@ class App extends Component {
                     Report Generator
                 </PageHeader>
                 <OptionsMenu />
-                <hr style={{ 'margin': "0 0 0 0" }} />
+                <hr style={{ 'margin': '0 0 0 0' }} />
                 <ReportMenu dropdownOptions={this.props.dropdownOptions} />
-                <hr style={{ 'marginTop': "0" }} />
+                <hr style={{ 'margin': '0 0 0 0' }} />
                 <Grid>
                     <Row>
                         <Col xs={10} md={10} />
                         <Col xs={2} md={2} >
-                            <Button bsStyle="warning" style={{'float': 'right'}}>Convert</Button>
+                            <Button bsStyle="warning" style={{'float': 'right', 'margin': '20px 0 20px 0'}}>Convert</Button>
                         </Col>
                     </Row>
                 </Grid>
