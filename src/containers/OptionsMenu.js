@@ -7,11 +7,15 @@ import DropdownOptionsInputPanel from '../components/DropdownOptionsInputPanel';
 import GenderChangePanel from '../components/GenderChangePanel';
 import NameInputPanel from '../components/NameInputPanel';
 
-import { addDropdownOptions } from '../actions/actions';
+import { addDropdownOptions, nameChanged } from '../actions/actions';
 
 class OptionsMenu extends Component {
     handleDropdownOptionsInputChange = (event) => {
         this.props.addToDropdown(event.target.value.split("\n").filter(option => option));
+    }
+
+    handleNameInputChange = (event) => {
+        this.props.nameChanged(event.target.value);
     }
 
     render() {
@@ -19,7 +23,7 @@ class OptionsMenu extends Component {
             <Grid>
                 <Row>
                     <Col xs={4} md={4} lg={3}>
-                        <NameInputPanel />
+                        <NameInputPanel onChange={this.handleNameInputChange}/>
                         <GenderChangePanel />
                     </Col>
                     <Col xs={4} md={4} lg={3}>
@@ -34,15 +38,15 @@ class OptionsMenu extends Component {
 
 OptionsMenu.propTypes = {
     addToDropdown: PropTypes.func,
-    dropdownOptions: PropTypes.arrayOf(PropTypes.string)
+    dropdownOptions: PropTypes.arrayOf(PropTypes.string),
+    nameChanged: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({ ...state });
 
-function mapDispatchToProps(dispatch) {
-    return {
-        addToDropdown: (options) => dispatch(addDropdownOptions(options))
-    };
-}
+const mapDispatchToProps = (dispatch) => ({
+    addToDropdown: (options) => dispatch(addDropdownOptions(options)),
+    nameChanged: (name) => dispatch(nameChanged(name))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(OptionsMenu);

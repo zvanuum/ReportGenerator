@@ -42,8 +42,19 @@ class ReportMenu extends Component {
         return withDropdowns;
     }
 
+    createReportWithName = (reportChildren) => {
+        return reportChildren.map(child => {
+            if (typeof child === 'string' && this.props.name) {
+                console.log(child) 
+                return child.replace(/\[\]/g, this.props.name);
+            }
+            return child;
+        });
+    }
+
     render() {
-        const generatedText = this.createReportWithDropdowns(this.props.reportText);
+        let generatedText = this.createReportWithDropdowns(this.props.reportText);
+        generatedText = this.createReportWithName(generatedText);
 
         return (
             <Grid>
@@ -80,6 +91,7 @@ class ReportMenu extends Component {
 ReportMenu.propTypes = {
     dropdownOptionChosen: PropTypes.func,
     dropdownOptions: PropTypes.arrayOf(PropTypes.string),
+    name: PropTypes.string,
     reportText: PropTypes.string,
     reportTextChanged: PropTypes.func,
     selectedDropdownOptions: PropTypes.object

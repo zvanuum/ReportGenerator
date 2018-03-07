@@ -19,7 +19,7 @@ class App extends Component {
                 </PageHeader>
                 <OptionsMenu />
                 <hr style={{ 'margin': '0 0 0 0' }} />
-                <ReportMenu dropdownOptions={this.props.dropdownOptions} />
+                <ReportMenu dropdownOptions={this.props.options.dropdownOptions} name={this.props.options.name} />
                 <hr style={{ 'margin': '0 0 0 0' }} />
                 <Grid>
                     <Row>
@@ -35,7 +35,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-    dropdownOptions: PropTypes.arrayOf(PropTypes.string)
+    options: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
