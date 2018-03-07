@@ -45,7 +45,6 @@ class ReportMenu extends Component {
     createReportWithName = (reportChildren) => {
         return reportChildren.map(child => {
             if (typeof child === 'string' && this.props.name) {
-                console.log(child) 
                 return child.replace(/\[\]/g, this.props.name);
             }
             return child;

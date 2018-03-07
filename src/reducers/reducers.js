@@ -1,4 +1,10 @@
-import { ADD_TO_DROPDOWN_OPTIONS, DROPDOWN_OPTION_CHOSEN, NAME_CHANGED, REPORT_TEXT_CHANGED } from '../actions/actionTypes'
+import { 
+    ADD_TO_DROPDOWN_OPTIONS, 
+    CHANGE_GENDERS, 
+    DROPDOWN_OPTION_CHOSEN, 
+    NAME_CHANGED, 
+    REPORT_TEXT_CHANGED 
+} from '../actions/actionTypes'
 
 export function options(state = { dropdownOptions: [], name: '' }, action) {
     switch (action.type) {
@@ -19,6 +25,8 @@ export function options(state = { dropdownOptions: [], name: '' }, action) {
 
 export function reportText(state = { reportText: '', selectedDropdownOptions: {} }, action) {
     switch (action.type) {
+        case CHANGE_GENDERS:
+            return Object.assign({}, state, { reportText: changeGenders(action.data, state.reportText) });
         case DROPDOWN_OPTION_CHOSEN:
             let newState = Object.assign({}, state);
 
@@ -30,4 +38,24 @@ export function reportText(state = { reportText: '', selectedDropdownOptions: {}
         default:
             return state;
     }
+}
+
+function changeGenders(genderToChangeTo, reportText) {
+    let convertedReportText = reportText;
+
+    switch (genderToChangeTo) {
+        case 'male':
+            console.log('m')
+            break;
+        case 'female':
+            console.log('f')
+            break;
+        case 'other':
+            console.log('o')
+            break;
+        default:
+            break;
+    }
+
+    return convertedReportText;
 }
