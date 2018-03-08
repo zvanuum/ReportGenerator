@@ -45,7 +45,8 @@ function changeGenders(genderToChangeTo, reportText) {
 
     switch (genderToChangeTo) {
         case 'male':
-            console.log('m')
+            convertedReportText = convertNeutralToMale(convertFemaleToMale(convertedReportText));
+
             break;
         case 'female':
             console.log('f')
@@ -58,4 +59,15 @@ function changeGenders(genderToChangeTo, reportText) {
     }
 
     return convertedReportText;
+}
+
+const convertFemaleToMale = (report) => (
+    report.replace(/(^|\s)(H|h)(er)(,|\.|;|\s)?/g, '$1$2im$4')
+        .replace(/(^|\s)(H|h)(ers)(,|\.|;|\s)?/g, '$1$2is$4')
+        .replace(/(^|\s)She(,|\.|;|\s)?/g, '$1He$2')
+        .replace(/(^|\s)she(,|\.|;|\s)?/g, '$1he$2')
+)
+
+function convertNeutralToMale(report) {
+    return report;
 }
