@@ -26,14 +26,21 @@ class OptionsMenu extends Component {
         return (
             <Grid>
                 <Row>
-                    <Col xs={4} md={4} lg={3}>
-                        <NameInputPanel onChange={this.handleNameInputChange}/>
-                        <GenderChangePanel onClick={this.handleGenderButtonPressed}/>
+                    <Col xs={4} md={4} lg={6}>
+                        <span>
+                            Typing {'{}'} will generate a dropdown menu to choose options from.
+                            Typing [] will be replaced by whatever is put in the "Name" field.
+                            The gender buttons will switch pronouns with respect to which button was pressed.
+                            Once finished editing, pressing the "Convert" button will generate the report in an easily copied or saved format.
+                        </span>
                     </Col>
                     <Col xs={4} md={4} lg={3}>
-                        <DropdownOptionsInputPanel onChange={this.handleDropdownOptionsInputChange}/>
+                        <NameInputPanel onChange={this.handleNameInputChange} />
+                        <GenderChangePanel onClick={this.handleGenderButtonPressed} />
                     </Col>
-                    <Col xs={4} md={4} lg={6} />
+                    <Col xs={4} md={4} lg={3}>
+                        <DropdownOptionsInputPanel onChange={this.handleDropdownOptionsInputChange} />
+                    </Col>
                 </Row>
             </Grid>
         );

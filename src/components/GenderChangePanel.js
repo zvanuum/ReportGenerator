@@ -8,7 +8,6 @@ const GenderChangePanel = (props) => {
             <ButtonGroup>
                 <Button onClick={() => props.onClick('male')}>Male</Button>
                 <Button onClick={() => props.onClick('female')}>Female</Button>
-                <Button onClick={() => props.onClick('other')}>Other</Button>
             </ButtonGroup>
         </Panel.Body>
     </Panel>)

@@ -60,7 +60,7 @@ class ReportMenu extends Component {
                 <Row className="show-grid">
                     <Col xs={6} md={6}>
                         <h4><Label bsStyle="warning">Input</Label></h4>
-                        <ReportInputForm onChange={this.handleReportInputChange} />
+                        <ReportInputForm value={this.props.reportText} onChange={this.handleReportInputChange} />
                     </Col>
                     <Col xs={6} 
                         md={6} 

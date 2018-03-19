@@ -1,9 +1,9 @@
-import { 
-    ADD_TO_DROPDOWN_OPTIONS, 
-    CHANGE_GENDERS, 
-    DROPDOWN_OPTION_CHOSEN, 
-    NAME_CHANGED, 
-    REPORT_TEXT_CHANGED 
+import {
+    ADD_TO_DROPDOWN_OPTIONS,
+    CHANGE_GENDERS,
+    DROPDOWN_OPTION_CHOSEN,
+    NAME_CHANGED,
+    REPORT_TEXT_CHANGED
 } from '../actions/actionTypes'
 
 export function options(state = { dropdownOptions: [], name: '' }, action) {
@@ -41,33 +41,26 @@ export function reportText(state = { reportText: '', selectedDropdownOptions: {}
 }
 
 function changeGenders(genderToChangeTo, reportText) {
-    let convertedReportText = reportText;
-
     switch (genderToChangeTo) {
         case 'male':
-            convertedReportText = convertNeutralToMale(convertFemaleToMale(convertedReportText));
-
-            break;
+            return convertFemaleToMale(reportText);
         case 'female':
-            console.log('f')
-            break;
-        case 'other':
-            console.log('o')
-            break;
+            return convertMaleToFemale(reportText);
         default:
-            break;
+            return reportText;
     }
-
-    return convertedReportText;
 }
 
 const convertFemaleToMale = (report) => (
-    report.replace(/(^|\s)(H|h)(er)(,|\.|;|\s)?/g, '$1$2im$4')
-        .replace(/(^|\s)(H|h)(ers)(,|\.|;|\s)?/g, '$1$2is$4')
+    report.replace(/(^|\s)(H|h)ers(,|\.|;|\s)?/g, '$1$2is$3')
+        .replace(/(^|\s)(H|h)er(,|\.|;|\s)?/g, '$1$2im$3')
         .replace(/(^|\s)She(,|\.|;|\s)?/g, '$1He$2')
         .replace(/(^|\s)she(,|\.|;|\s)?/g, '$1he$2')
 )
 
-function convertNeutralToMale(report) {
-    return report;
-}
+const convertMaleToFemale = (report) => (
+    report.replace(/(^|\s)He(,|\.|;|\s)?/g, '$1She$2')
+        .replace(/(^|\s)he(,|\.|;|\s)?/g, '$1she$2')
+        .replace(/(^|\s)(H|h)im(,|\.|;|\s)?/g, '$1$2er$3')
+        .replace(/(^|\s)(H|h)is(,|\.|;|\s)?/g, '$1$2ers$3')
+)

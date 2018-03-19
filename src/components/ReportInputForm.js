@@ -3,6 +3,7 @@ import { FormControl } from 'react-bootstrap';
 
 const ReportInputForm = (props) => (
     <FormControl
+        value={props.value}
         onChange={(e) => props.onChange(e)}
         componentClass="textarea"
         placeholder="Input report here"
