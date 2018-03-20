@@ -1,6 +1,6 @@
 # ReportGenerator
 A simple React application for my girlfriend to easily manage creating reports for her patients.
-Deployed [here](https://zvanuum.github.io/reportGenerator)
+Deployed [here](https://zvanuum.github.io/ReportGenerator)
 
 TODO:  
 [ ] Create a server & db  
