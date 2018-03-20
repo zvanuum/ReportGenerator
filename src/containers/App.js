@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { Col, Button, Grid, Modal, PageHeader, Row } from 'react-bootstrap';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import OptionsMenu from './OptionsMenu';
 import ReportMenu from './ReportMenu';
@@ -26,7 +27,31 @@ class App extends Component {
         return dropdownCount === selectedDropdownCount;
     }
 
+    generateReportText = () => {
+        let generatedText = this.replaceTemplateWithDropdownOptions(this.props.reportText.reportText, this.props.reportText.selectedDropdownOptions);
+        generatedText = this.replaceTemplateWithName(generatedText, this.props.options.name);
+        return generatedText;
+    }
+
+    replaceTemplateWithDropdownOptions = (reportText, selectedDropdownOptions) => {
+        const splitText = reportText.split('{}');
+        let generatedText = '';
+
+        for (let i in splitText) {
+            generatedText += splitText[i];
+            generatedText += selectedDropdownOptions[i] || '';
+        }
+
+        return generatedText;
+    }
+
+    replaceTemplateWithName = (generatedText, name) => {
+        return generatedText.replace(/\[\]/g, name);
+    }
+
     render() {
+        const generatedReportText = this.generateReportText();
+
         return (
             <div>
                 <PageHeader style={{
@@ -46,7 +71,7 @@ class App extends Component {
                         <Col xs={6} md={6}>
                             {
                                 !this.allDropdownsCompleted() ?
-                                    (<p  style={{ 'margin': '20px 0 0 0', 'color': 'red', 'fontSize': '11px' }}> 
+                                    (<p style={{ 'margin': '20px 0 0 0', 'color': 'red', 'fontSize': '11px' }}>
                                         Please select an option for each dropdown menu before generating a report.
                                     </p>) :
                                     null
@@ -70,10 +95,14 @@ class App extends Component {
                         <Modal.Title>Report</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <h4>{this.props.reportText.reportText}</h4>
+                        <h4>{generatedReportText}</h4>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={() => this.handleClose()}>Close</Button>
+                        <CopyToClipboard text={generatedReportText}>
+                            <Button bsStyle="warning">Copy to Clipboard</Button>
+                        </CopyToClipboard>
+
                     </Modal.Footer>
                 </Modal>
             </div>

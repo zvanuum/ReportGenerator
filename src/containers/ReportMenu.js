@@ -42,10 +42,10 @@ class ReportMenu extends Component {
         return withDropdowns;
     }
 
-    createReportWithName = (reportChildren) => {
+    createReportWithName = (reportChildren, name) => {
         return reportChildren.map(child => {
-            if (typeof child === 'string' && this.props.name) {
-                return child.replace(/\[\]/g, this.props.name);
+            if (typeof child === 'string' && name) {
+                return child.replace(/\[\]/g, name);
             }
             return child;
         });
@@ -53,7 +53,7 @@ class ReportMenu extends Component {
 
     render() {
         let generatedText = this.createReportWithDropdowns(this.props.reportText);
-        generatedText = this.createReportWithName(generatedText);
+        generatedText = this.createReportWithName(generatedText, this.props.name);
 
         return (
             <Grid>
