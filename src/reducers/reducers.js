@@ -52,8 +52,7 @@ function changeGenders(genderToChangeTo, reportText) {
 }
 
 const convertFemaleToMale = (report) => (
-    report.replace(/(^|\s)(H|h)ers(,|\.|;|\s)?/g, '$1$2is$3')
-        .replace(/(^|\s)(H|h)er(,|\.|;|\s)?/g, '$1$2im$3')
+    report.replace(/(^|\s)(H|h)ers?(,|\.|;|\s)?/g, '$1$2is$3')
         .replace(/(^|\s)She(,|\.|;|\s)?/g, '$1He$2')
         .replace(/(^|\s)she(,|\.|;|\s)?/g, '$1he$2')
 )
