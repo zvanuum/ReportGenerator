@@ -52,14 +52,14 @@ function changeGenders(genderToChangeTo, reportText) {
 }
 
 const convertFemaleToMale = (report) => (
-    report.replace(/(^|\s)(H|h)ers?(,|\.|;|\s)?/g, '$1$2is$3')
-        .replace(/(^|\s)She(,|\.|;|\s)?/g, '$1He$2')
-        .replace(/(^|\s)she(,|\.|;|\s)?/g, '$1he$2')
+    report.replace(/(^|\s)(H|h)er(s)?(,|\.|;|\s|\n)?/g, '$1$2is$4')
+        .replace(/(^|\s)She(,|\.|;|\s|\n)?/g, '$1He$2')
+        .replace(/(^|\s)she(,|\.|;|\s|\n)?/g, '$1he$2')
 )
 
 const convertMaleToFemale = (report) => (
-    report.replace(/(^|\s)He(,|\.|;|\s)?/g, '$1She$2')
-        .replace(/(^|\s)he(,|\.|;|\s)?/g, '$1she$2')
-        .replace(/(^|\s)(H|h)im(,|\.|;|\s)?/g, '$1$2er$3')
-        .replace(/(^|\s)(H|h)is(,|\.|;|\s)?/g, '$1$2ers$3')
+    report.replace(/(^|\s)He(,|\.|;|\s|\n)?/g, '$1She$2')
+        .replace(/(^|\s)he(,|\.|;|\s|\n)?/g, '$1she$2')
+        .replace(/(^|\s)(H|h)im(,|\.|;|\s|\n)?/g, '$1$2er$3')
+        .replace(/(^|\s)(H|h)is(,|\.|;|\s|\n)?/g, '$1$2ers$3')
 )
